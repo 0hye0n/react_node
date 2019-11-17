@@ -4,6 +4,7 @@ import Home from "./home";
 import Teacher from "./teacher";
 import Kakaomap from "./kakaomap";
 import Login from "./login";
+import Signup from "./signup";
 
 const Main = () => {
   return (
@@ -12,6 +13,7 @@ const Main = () => {
       <Route path="/teacher" component={Teacher} />
       <Route path="/kakaomap" component={Kakaomap} />
       <Route path="/login" component={Login} />
+      <Route path="/signup" component={Signup} />{" "}
     </Switch>
   );
 };

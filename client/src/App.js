@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import "./App.css";
-// bootstrap
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { GoogleLoginButton } from "react-social-login-buttons";
 
 // mdl
 import { Layout, Header, Navigation, Drawer, Content } from "react-mdl";
@@ -36,6 +33,7 @@ class App extends Component {
               <Link to="/teacher">Teacher</Link>
               <Link to="/kakaomap">Kakaomap</Link>
               <Link to="/login">Login</Link>
+              <Link to="/signup">Signup</Link>
             </Navigation>
           </Header>
           <Drawer title="G.X Platform">
@@ -55,26 +53,4 @@ class App extends Component {
   }
 }
 
-/*
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-*/
 export default App;

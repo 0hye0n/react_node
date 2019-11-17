@@ -1,17 +1,17 @@
 import React, { Component } from "react";
+import { Tabs, Tab, Grid, Cell, Button } from "react-mdl";
 import {
-  Tabs,
-  Tab,
-  Grid,
-  Cell,
   Card,
-  CardTitle,
   CardText,
-  CardActions,
-  Button,
-  CardMenu,
-  IconButton
-} from "react-mdl";
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+  Row,
+  Col,
+  CardImg
+} from "reactstrap";
+import Lectureregister from "./lectureregister";
+import "./lectureregister.css";
 
 class Teacher extends Component {
   constructor(props) {
@@ -19,31 +19,37 @@ class Teacher extends Component {
     this.state = { activeTab: 0 };
   }
 
+  teaturecard = props => {
+    return (
+      <div>
+        <Row>
+          <Col sm="6">
+            <Card>
+              <CardBody>
+                <CardTitle>Jung Jin Woo</CardTitle>
+                <CardSubtitle>Yoga</CardSubtitle>
+              </CardBody>
+              <CardImg
+                width="100%"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS236JMxuVJsGe3Eg9ZGD1_usFHcYdFPEvK0ABXr9o4Yv9kJpg1&s"
+                alt="Card image cap"
+              />
+              <CardBody>
+                <CardText>Yoga King God General</CardText>
+                <Button colored>home</Button>
+                <Button colored>Subscribe</Button>
+                <Button colored>Like</Button>
+              </CardBody>
+            </Card>
+          </Col>
+        </Row>
+      </div>
+    );
+  };
+
   toggleCategories() {
     if (this.state.activeTab === 0) {
-      return (
-        <Card shadow={5} style={{ minwidth: "450", margin: "auto" }}>
-          <CardTitle
-            style={{
-              color: "#fff",
-              height: "176px",
-              background:
-                "url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS236JMxuVJsGe3Eg9ZGD1_usFHcYdFPEvK0ABXr9o4Yv9kJpg1&s) center / cover"
-            }}
-          >
-            Jung Jin Woo
-          </CardTitle>
-          <CardText>Yoga King God General</CardText>
-          <CardActions border center>
-            <Button colored>home</Button>
-            <Button colored>Subscribe</Button>
-            <Button colored>Like</Button>
-          </CardActions>
-          <CardMenu style={{ color: "#fff" }}>
-            <IconButton name="share" />
-          </CardMenu>
-        </Card>
-      );
+      return <div>{this.teaturecard()}</div>;
     } else if (this.state.activeTab === 1) {
       return (
         <div>
@@ -62,6 +68,12 @@ class Teacher extends Component {
           <h1>This is G.X</h1>
         </div>
       );
+    } else if (this.state.activeTab === 4) {
+      return (
+        <div>
+          <Lectureregister />
+        </div>
+      );
     }
   }
 
@@ -77,6 +89,7 @@ class Teacher extends Component {
           <Tab>Pilates</Tab>
           <Tab>Home Training</Tab>
           <Tab>G.X</Tab>
+          <Tab>Lecture Register</Tab>
         </Tabs>
         <section className="teacher-grid">
           {/*this.toggleCategories()*/}
