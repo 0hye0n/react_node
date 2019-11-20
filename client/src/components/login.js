@@ -26,8 +26,10 @@ class Login extends Component {
     const headers = {
       'Content-Type': 'application/json'
     }
-   axios.get('http://15.164.32.128:9000/login', data, {
-    headers: headers
+    axios.defaults.baseURL = 'http://15.164.32.128:9000';
+   axios.post('/login', {
+    email: this.state.email,
+    password: this.state.password
    }).then(res => {
     this.state.res = res;
    }).catch(err => {
