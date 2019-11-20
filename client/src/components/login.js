@@ -18,22 +18,7 @@ class Login extends Component {
     };
   }
   async callAPI(){
-    axios.defaults.baseURL = "http://15.164.32.128:9000";
-    const data = {
-      email: this.state.email,
-      password: this.state.password
-    }
-    const headers = {
-      'Content-Type': 'application/json',
-      'Authorization': 'lee'
-    };
-    try{
-      let res = await axios.get('/login')
-      this.state.err = res;
-    } catch(e){
-      this.state.err = e;
-    }
-/*
+    
    axios.post('http://15.164.32.128:9000/login', data, {
     headers: headers
    }).then(res => {
@@ -41,7 +26,7 @@ class Login extends Component {
    }).catch(err => {
     console.log(err);
    })
-   */
+
   }
   componentDidMount(){
     console.log(this.state.err);
