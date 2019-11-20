@@ -17,7 +17,9 @@ class Login extends Component {
     };
   }
   callAPI(){
-   axios.post('/login', {
+    console.log(this.state.email);
+    console.log(this.state.password);
+   axios.post('http://15.164.32.128:9000/login', {
      params: {
        email: this.state.email,
        password: this.state.password
