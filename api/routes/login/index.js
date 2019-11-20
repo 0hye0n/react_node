@@ -1,8 +1,6 @@
 var express = require('express');
 var mysql = require('mysql');
-var jwt = require('jsonwebtoken');
 var router = express.Router();
-
 
 var pool = mysql.createPool({
     host:"localhost",
@@ -14,18 +12,18 @@ var pool = mysql.createPool({
     //DB Pool default Number => 10
 })
 
-router.get('/', (res, req, next) => {
+router.get('/', (req, res, next) => {
     console.log('123');
-    console.log(req.body.a);
-    res.json({a: 'as'});
+    //console.log(req);
+    res.send("123");
 })
 
-router.post('/', (res, req) => {
+router.post('/', (req, res) => {
     const {email, password} = req.body;
     console.log({email});
     console.log({password});
     return res.json({a: 123});
-    /*
+    
     pool.getConnection((err, connection) => {
         if(err){
             console.log("db connection failed")
@@ -64,7 +62,7 @@ router.post('/', (res, req) => {
             })
             connection.release();
         }
-    })*/
+    })
 })
 
 
