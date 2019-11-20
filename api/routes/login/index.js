@@ -19,6 +19,8 @@ router.post('/', (res, req) => {
     const {email, password} = req.body;
     console.log({email});
     console.log({password});
+    return res.json({a: 123});
+    /*
     pool.getConnection((err, connection) => {
         if(err){
             console.log("db connection failed")
@@ -57,7 +59,7 @@ router.post('/', (res, req) => {
             })
             connection.release();
         }
-    })
+    })*/
 })
 
 
