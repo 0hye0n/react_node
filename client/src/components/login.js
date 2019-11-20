@@ -5,6 +5,7 @@ import {
   GoogleLoginButton,
   FacebookLoginButton
 } from "react-social-login-buttons";
+import axios from 'axios';
 
 class Login extends Component {
   constructor(props){
@@ -16,17 +17,15 @@ class Login extends Component {
     };
   }
   callAPI(){
-   fetch('/testAPI', {
-     method: 'post',
-     body: JSON.stringify({
-       a: 5,
-       b: 2
-     }),
-     headers: {"Content-Type": "application/json"}
-   }).then(response => {
-     return response.json()
-   }).then(body => {
-     alert("123");
+   axios.post('/login', {
+     params: {
+       email: this.state.email,
+       password: this.state.password
+     }
+   }).then(res => {
+    console.log(res);
+   }).catch(err => {
+    console.log(err);
    })
   }
 
