@@ -16,7 +16,7 @@ class Login extends Component {
       password: ''
     };
   }
-  callAPI(){
+  async callAPI(){
     const data = {
       email: this.state.email,
       password: this.state.password
