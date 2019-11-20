@@ -26,14 +26,14 @@ class Login extends Component {
     const headers = {
       'Content-Type': 'application/json'
     }
-    try{
-      this.state.res = await axios.post('http://15.164.32.128:9000/login', {
-      email: this.state.email,
-      password: this.state.password
-      });
-    } catch(err) {
+   axios.post('http://15.164.32.128:9000/login', {
+    email: this.state.email,
+    password: this.state.password
+   }).then(res => {
+    this.state.res = res.data;
+   }).catch(err => {
     this.state.err = err;
-   }
+   })
 
   }
   componentDidMount(){
