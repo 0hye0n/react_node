@@ -25,14 +25,11 @@ class Login extends Component {
       'Content-Type': 'application/json',
       'Authorization': 'lee'
     };
-
-    axios.get('http://15.164.32.128:9000/login', data, {
-      headers: headers
-     }).then(res => {
-      console.log(res);
-     }).catch(err => {
-      console.log(err);
-     })
+    try{
+      let res = await axios.get('http://15.164.32.128:9000/login')
+    } catch(e){
+      console.log(e.response);
+    }
 /*
    axios.post('http://15.164.32.128:9000/login', data, {
     headers: headers
