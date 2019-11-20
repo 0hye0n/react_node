@@ -3,7 +3,6 @@ var mysql = require('mysql');
 var jwt = require('jsonwebtoken');
 var router = express.Router();
 
-const secret = "secretssh";
 
 var pool = mysql.createPool({
     host:"localhost",
@@ -22,7 +21,8 @@ router.get('/', (req, res, next) => {
 
 router.post('/', (res, req) => {
     const {email, password} = req.body;
-
+    console.log({email});
+    console.log({password});
     pool.getConnection((err, connection) => {
         if(err){
             console.log("db connection failed")
