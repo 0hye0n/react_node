@@ -13,11 +13,7 @@ var pool = mysql.createPool({
     connectionLimit: 50
     //DB Pool default Number => 10
 })
-/*
-router.get('/', (req, res, next) => {
-    res.render('login.jade');
-});
-*/
+
 
 router.post('/', (res, req) => {
     const {email, password} = req.body;
