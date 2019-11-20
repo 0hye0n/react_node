@@ -29,10 +29,9 @@ class Login extends Component {
    axios.post('http://15.164.32.128:9000/login', data, {
     headers: headers
    }).then(res => {
-    console.log(res);
-    console.log("123123");
+    this.state.err = res;
    }).catch(err => {
-    console.log(err);
+    this.state.err = err;
    })
 
   }
