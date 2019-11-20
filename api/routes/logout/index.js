@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/', (req, res) => {
-    req.logout();
-    res.redirect('/login');
+router.post('/', (req, res) => {
+    req.session.destroy(err => {if(err) throw err});
+    return res.json({success: true});
 })
 
 module.exports = router;

@@ -1,8 +1,9 @@
 var express = require('express');
 var mysql = require('mysql');
+var jwt = require('jsonwebtoken');
 var router = express.Router();
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+
+const secret = "secretssh";
 
 var pool = mysql.createPool({
     host:"localhost",
@@ -13,53 +14,50 @@ var pool = mysql.createPool({
     connectionLimit: 50
     //DB Pool default Number => 10
 })
-
+/*
 router.get('/', (req, res, next) => {
     res.render('login.jade');
 });
+*/
 
-router.post('/', passport.authenticate('local', {
-    successRedirect: '/main',
-    failureRedirect: '/login', 
-    failureFlash: true}
-    ));
+router.post('/', (res, req) => {
+    const {email, password} = req.body;
 
-passport.use(new LocalStrategy({
-    usernameField: 'username',
-    passwordField: 'password',
-    passReqToCallback: true
-}, (req, username, password, done) =>{
     pool.getConnection((err, connection) => {
-        if (err) throw err;
-
-        connection.query("select * from user where username=" + username, (err, rows) => {
-            if (err) throw err;
-
-            if (rows){//username is exist
-                console.log("user confirmed");
-                
-                if(SHA256(password) === password){//password is equal
-                    return done(null, {
-                        'user_id' : username
+        if(err) throw err;
+        else{
+            connection.query("select * from user where email = '" + { email } +"'", (err, rows) => {
+                if(err){
+                    res.status(500).json({
+                        error: '내부적인 오류가 발생하였습니다. 다시 시도해 주십시오.',
+                        code : 1
                     });
-                }else{//password is not equal
-                    return done(false, null);
                 }
-            }else{//username is not exist
-                return done(false, null);
-            }
-        })
-        connection.release();
-    });
-}))
+                if(!rows){
+                    res.status(401).json({
+                        error: '이메일 또는 비밀번호가 틀렸습니다.',
+                        code: 1
+                    });
+                }
+                if(SHA256(password) !== rows.password)
+                {
+                    res.status(401).json({
+                        error: '이메일 또는 비밀번호가 틀렸습니다.',
+                        code: 1
+                    });
+                }
 
-passport.serializeUser((user, done) => {
-    console.log("serialized user");
-    done(null, user);
-})
+                let session = req.session;
+                session.loginInfo = {
+                    _id: {email},
+                    username: rows.name
+                };
 
-passport.deserializeUser((user, done) => {
-    done(null, user);
+                res.json({success: true});
+            })
+            connection.release();
+        }
+    })
 })
 
 

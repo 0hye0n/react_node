@@ -24,7 +24,7 @@ app.use(
   cookieSession({
     keys: ["node_lee"],
     cookie: {
-      maxAge: 1000 * 60 * 60
+      maxAge: 1000 * 60 * 60 * 5
     }
   })
 );

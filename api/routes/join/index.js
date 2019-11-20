@@ -11,24 +11,34 @@ var pool = mysql.createPool({
 })
 
 router.post('/', (req, res) => {
-    const { username, password } = req.body;
+    const { email, password, username } = req.body;
     password = SHA256(password);
 
     pool.getConnection((err, connection) => {
         if (err) throw err;
-
-        connection.query("insert into user(username, password, email) values('" + username + "', '" + password + "')", (err) => {
+        var ok = false;
+        connection.query("select * from user where = '" + {email} +"'", (err, rows) => {
             if(err) throw err;
-            else {
-                console.log("successful join!!!");
-                res.json()
+            if(rows){
+                //이미 똑같은 이메일로 가입됨.
+                res.status(401).json({error: "존재하는 이메일 입니다."})
+            }else{
+                ok = true;
             }
         })
+
+        if(ok){
+            connection.query("insert into user(email, name, pw) values('" + {email} + "', '" + {username} + "', '"+ {pw} +"')", (err) => {
+                if(err) throw err;
+                else {
+                    //console.log("successful join!!!");
+                    res.status(200).json({success: true});
+                }
+            })
+        }
+
+        connection.release();
     })
-
-
-    
-    
 })
 
 /**
