@@ -13,7 +13,8 @@ class Login extends Component {
     this.callAPI = this.callAPI.bind(this);
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      err: ''
     };
   }
   async callAPI(){
@@ -28,8 +29,9 @@ class Login extends Component {
     };
     try{
       let res = await axios.get('/login')
+      this.state.err = res;
     } catch(e){
-      console.log(e.response);
+      this.state.err = e;
     }
 /*
    axios.post('http://15.164.32.128:9000/login', data, {
@@ -40,8 +42,9 @@ class Login extends Component {
     console.log(err);
    })
    */
-   console.log(this.state.email);
-    console.log(this.state.password);
+  }
+  componentDidMount(){
+    console.log(this.state.err);
   }
 
   render() {
