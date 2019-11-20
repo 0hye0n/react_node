@@ -14,6 +14,9 @@ var pool = mysql.createPool({
     //DB Pool default Number => 10
 })
 
+router.get('/', (res, req, next) => {
+    res.json({a: 123});
+})
 
 router.post('/', (res, req) => {
     const {email, password} = req.body;

@@ -25,6 +25,15 @@ class Login extends Component {
       'Content-Type': 'application/json',
       'Authorization': 'lee'
     };
+
+    axios.get('http://15.164.32.128:9000/login', data, {
+      headers: headers
+     }).then(res => {
+      console.log(res);
+     }).catch(err => {
+      console.log(err);
+     })
+/*
    axios.post('http://15.164.32.128:9000/login', data, {
     headers: headers
    }).then(res => {
@@ -32,7 +41,7 @@ class Login extends Component {
    }).catch(err => {
     console.log(err);
    })
-
+   */
    console.log(this.state.email);
     console.log(this.state.password);
   }
