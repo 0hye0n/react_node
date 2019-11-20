@@ -28,7 +28,7 @@ router.post('/', (res, req) => {
             connection.query("select * from user where email = '" + { email } +"'", (err, rows) => {
                 if(err){
                     console.log(err);
-                    res.status(500).json({
+                    res.status(401).json({
                         error: '내부적인 오류가 발생하였습니다. 다시 시도해 주십시오.',
                         code : 1
                     });
