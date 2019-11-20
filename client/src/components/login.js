@@ -18,7 +18,14 @@ class Login extends Component {
     };
   }
   async callAPI(){
-    
+    data = {
+      email: this.state.email,
+      password: this.state.password
+    }
+    headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'lee'
+    }
    axios.post('http://15.164.32.128:9000/login', data, {
     headers: headers
    }).then(res => {
