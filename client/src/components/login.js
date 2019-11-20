@@ -17,11 +17,16 @@ class Login extends Component {
     };
   }
   callAPI(){
-   axios.post('http://15.164.32.128:9000/login', {
-     params: {
-       email: this.state.email,
-       password: this.state.password
-     }
+    const data = {
+      email: this.state.email,
+      password: this.state.password
+    }
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'lee'
+    };
+   axios.post('http://15.164.32.128:9000/login', data, {
+    headers: headers
    }).then(res => {
     console.log(res);
    }).catch(err => {
