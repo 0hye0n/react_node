@@ -18,11 +18,11 @@ class Login extends Component {
     };
   }
   async callAPI(){
-    data = {
+    const data = {
       email: this.state.email,
       password: this.state.password
     }
-    headers = {
+    const headers = {
       'Content-Type': 'application/json',
       'Authorization': 'lee'
     }
