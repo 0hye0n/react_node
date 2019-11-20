@@ -18,7 +18,7 @@ class Login extends Component {
   }
   async callAPI(){
     const port = 9000;
-    axios.defaults.baseURL = loaction.protocol + '//' + location.hostname + ':' + port;
+    axios.defaults.baseURL = location.protocol + '//' + location.hostname + ':' + port;
     const data = {
       email: this.state.email,
       password: this.state.password
