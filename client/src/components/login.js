@@ -17,7 +17,8 @@ class Login extends Component {
     };
   }
   async callAPI(){
-    const instance = axios.create({baseURL: 'http://15.164.32.128:9000'})
+    const port = 9000;
+    axios.defaults.baseURL = loaction.protocol + '//' + location.hostname + ':' + port;
     const data = {
       email: this.state.email,
       password: this.state.password
@@ -27,7 +28,7 @@ class Login extends Component {
       'Authorization': 'lee'
     };
     try{
-      let res = await instance.get('/login')
+      let res = await axios.get('/login')
     } catch(e){
       console.log(e.response);
     }
