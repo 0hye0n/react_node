@@ -30,6 +30,7 @@ class Login extends Component {
     headers: headers
    }).then(res => {
     console.log(res);
+    console.log("123123");
    }).catch(err => {
     console.log(err);
    })
