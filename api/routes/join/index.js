@@ -1,67 +1,35 @@
 var express = require('express');
 var mysql = require('mysql');
 var router = express.Router();
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
 
 var pool = mysql.createPool({
     host:"localhost",
     port: 3306,
     user: 'root',
     password: "!sodwkdrh1234",
-    database: 'bueno',
-    connectionLimit: 50
-    //DB Pool default Number => 10
+    database: 'bueno'
 })
 
-router.get('/', (req, res, next) => {
-    res.render('login.jade');
-});
+router.post('/', (req, res) => {
+    const { username, password } = req.body;
+    password = SHA256(password);
 
-router.post('/', passport.authenticate('local', {
-    successRedirect: '/main',
-    failureRedirect: '/login', 
-    failureFlash: true}
-    ));
-
-passport.use(new LocalStrategy({
-    usernameField: 'username',
-    passwordField: 'password',
-    passReqToCallback: true
-}, (req, username, password, done) =>{
     pool.getConnection((err, connection) => {
         if (err) throw err;
 
-        connection.query("select * from user where username=" + username, (err, rows) => {
-            if (err) throw err;
-
-            if (rows){//username is exist
-                console.log("user confirmed");
-                
-                if(SHA256(password) === password){//password is equal
-                    return done(null, {
-                        'user_id' : username
-                    });
-                }else{//password is not equal
-                    return done(false, null);
-                }
-            }else{//username is not exist
-                return done(false, null);
+        connection.query("insert into user(username, password, email) values('" + username + "', '" + password + "')", (err) => {
+            if(err) throw err;
+            else {
+                console.log("successful join!!!");
+                res.json()
             }
         })
-        connection.release();
-    });
-}))
+    })
 
-passport.serializeUser((user, done) => {
-    console.log("serialized user");
-    done(null, user);
+
+    
+    
 })
-
-passport.deserializeUser((user, done) => {
-    done(null, user);
-})
-
 
 /**
 *
@@ -203,6 +171,4 @@ s = Utf8Encode(s);
 return binb2hex(core_sha256(str2binb(s), s.length * chrsz));
 }
 
-// 암호화 확인
-console.log(SHA256("Test")) ;
 module.exports = router;
