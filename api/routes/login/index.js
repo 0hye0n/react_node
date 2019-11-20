@@ -24,7 +24,10 @@ router.post('/', (res, req) => {
     const {email, password} = req.body;
 
     pool.getConnection((err, connection) => {
-        if(err) throw err;
+        if(err){
+            console.log("db connection failed")
+            throw err;
+        } 
         else{
             connection.query("select * from user where email = '" + { email } +"'", (err, rows) => {
                 if(err){
