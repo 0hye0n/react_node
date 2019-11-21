@@ -20,12 +20,13 @@ class Login extends Component {
   callAPI = async () => {
     const {
       a : {a}
-    } = await axios.get("http://15.164.32.128/login");
+    } = await axios.get("http://15.164.32.128:9000/login");
 
     this.setState({a});
   }
   componentDidMount(){
     this.callAPI();
+    console.log(this.state.a);
   }
 
   render() {
