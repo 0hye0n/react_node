@@ -14,28 +14,18 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
-      err: false,
-      res: false
+      a: ''
     };
   }
-  callAPI(){
-    const instance = axios.create({
-      baseURL: "http://15.164.32.128:9000"
-    });
+  callAPI = async () => {
+    const {
+      a : {a}
+    } = await axios.get("http://15.164.32.128/login");
 
-    const headers = {
-      'Content-Type': 'application/json'
-    }
+    this.setState({a});
   }
   componentDidMount(){
-    axios.get('http://15.164.32.128:9000/login')
-      .then( res => {
-        this.setState({res: res.data});
-      }).catch(err => {
-        console.log(err);
-      })
-    console.log(this.state.err);
-    console.log(this.state.res);
+    this.callAPI();
   }
 
   render() {
