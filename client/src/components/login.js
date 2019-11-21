@@ -15,7 +15,7 @@ class Login extends Component {
       email: '',
       password: '',
       err: '',
-      res: ''
+      res: false
     };
   }
   async callAPI(){
@@ -23,18 +23,19 @@ class Login extends Component {
       baseURL: "http://15.164.32.128:9000/"
     });
 
-    const data = {
+    let data = JSON.stringify({
       email: this.state.email,
       password: this.state.password
-    }
+    });
+
     const headers = {
       'Content-Type': 'application/json'
     }
-   instance.post('/login', {
-    email: this.state.email,
-    password: this.state.password
+
+   instance.post('/login', data, {
+     headers: headers, 
    }).then(res => {
-    this.state.res = res.data;
+    this.state.res = true;
    }).catch(err => {
     this.state.err = err;
    })
