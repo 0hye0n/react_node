@@ -14,7 +14,7 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
-      err: '',
+      err: false,
       res: false
     };
   }
@@ -37,7 +37,7 @@ class Login extends Component {
    }).then(res => {
     this.state.res = true;
    }).catch(err => {
-    this.state.err = err;
+    this.state.err = true;
    })
 
   }
