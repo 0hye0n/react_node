@@ -32,7 +32,7 @@ class Login extends Component {
       'Content-Type': 'application/json'
     }
     let res = await axios.get('/login');
-    this.state.res = res;
+    this.state.res = res.data.a;
   /*
    instance.post('/login', data, {
      headers: headers, 

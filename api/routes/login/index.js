@@ -14,7 +14,6 @@ var pool = mysql.createPool({
 
 router.get('/', (req, res, next) => {
     console.log('123');
-    console.log(res);
     res.json({a : 123});
 })
 
