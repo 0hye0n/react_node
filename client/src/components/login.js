@@ -31,7 +31,9 @@ class Login extends Component {
     const headers = {
       'Content-Type': 'application/json'
     }
-    let res = await axios.get('/login');
+    let res = await axios.get('/login', {
+      timeout: 1000
+    });
     this.state.res = res.data.a;
   /*
    instance.post('/login', data, {
