@@ -36,9 +36,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": {
-    "/api/v1": {
-      "target": "http:15.164.32.128:9000/"
-    }
-  }
+  "proxy": "http://15.164.32.128:9000"
 }
