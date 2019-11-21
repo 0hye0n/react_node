@@ -14,15 +14,13 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
-      a: ''
+      a: []
     };
   }
   callAPI = async () => {
-    const {
-      a : {a}
-    } = await axios.get("http://15.164.32.128:9000/login");
+    const res = await axios.get("http://15.164.32.128:9000/login");
 
-    this.setState({a});
+    this.setState({a : res.data});
   }
   componentDidMount(){
     this.callAPI();
