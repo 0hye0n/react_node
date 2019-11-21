@@ -19,6 +19,10 @@ class Login extends Component {
     };
   }
   async callAPI(){
+    const instance = axios.create({
+      baseURL: "http://15.164.32.128:9000/"
+    });
+
     const data = {
       email: this.state.email,
       password: this.state.password
@@ -26,7 +30,7 @@ class Login extends Component {
     const headers = {
       'Content-Type': 'application/json'
     }
-   axios.post('http://15.164.32.128:9000/login', {
+   instance.post('/login', {
     email: this.state.email,
     password: this.state.password
    }).then(res => {
