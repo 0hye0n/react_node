@@ -31,7 +31,9 @@ class Login extends Component {
     const headers = {
       'Content-Type': 'application/json'
     }
-
+    let res = await axios.get('/login');
+    this.state.res = res;
+  /*
    instance.post('/login', data, {
      headers: headers, 
    }).then(res => {
@@ -39,7 +41,7 @@ class Login extends Component {
    }).catch(err => {
     this.state.err = true;
    })
-
+*/
   }
   componentDidMount(){
     console.log(this.state.err);
