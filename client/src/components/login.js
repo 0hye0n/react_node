@@ -20,7 +20,7 @@ class Login extends Component {
   }
   async callAPI(){
     const instance = axios.create({
-      baseURL: "http://15.164.32.128:9000/"
+      baseURL: "http://15.164.32.128:9000"
     });
 
     let data = JSON.stringify({
@@ -31,10 +31,12 @@ class Login extends Component {
     const headers = {
       'Content-Type': 'application/json'
     }
+
     let res = await axios.get('/login', {
       timeout: 1000
     });
-    this.state.res = res.data.a;
+    console.log(res);
+    this.state.res = res;
   /*
    instance.post('/login', data, {
      headers: headers, 
