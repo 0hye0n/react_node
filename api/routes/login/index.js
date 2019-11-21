@@ -22,6 +22,7 @@ router.post('/', (req, res) => {
     const {email, password} = req.body;
     console.log({email});
     console.log({password});
+    console.log(res);
     return res.send("123123");
     
     pool.getConnection((err, connection) => {
