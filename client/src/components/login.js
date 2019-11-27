@@ -5,30 +5,33 @@ import {
   GoogleLoginButton,
   FacebookLoginButton
 } from "react-social-login-buttons";
-import axios from 'axios';
+import axios from "axios";
 
 class Login extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.callAPI = this.callAPI.bind(this);
     this.state = {
-      email: '',
-      password: '',
-      a: ''
+      email: "",
+      password: "",
+      a: ""
     };
   }
   callAPI = async () => {
     console.log(1);
-    await axios.get("http://localhost:9000/main").then((res) => {
-    this.setState((state) => {
-      return {a : res.data.data}; 
-    });
-      console.log(this.state.a);
-    }).catch(err => {
-      console.log(err);
-    })
-  }
-  componentDidMount(){
+    await axios
+      .get("http://localhost:9000/main")
+      .then(res => {
+        this.setState(state => {
+          return { a: res.data.data };
+        });
+        console.log(this.state.a);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+  componentDidMount() {
     this.callAPI();
     console.log(2);
     console.log(this.state);
@@ -36,36 +39,38 @@ class Login extends Component {
   }
 
   render() {
-    const {email, password, a} = this.state
+    const { email, password, a } = this.state;
     return (
       <Form className="login-form">
         <h1>
           <span className="font-weight-bold">G.X Platform</span>.com
         </h1>
         <h2 className="text-center">Welcome</h2>
-       <Form onSubmit={this.callAPI}>
-            <FormGroup>
-              <Label>Email</Label>
-              <Input 
+        <Form onSubmit={this.callAPI}>
+          <FormGroup>
+            <Label>Email</Label>
+            <Input
               type="email"
               name="email"
               placeholder="Email"
               value={this.state.email}
-              onChange={e => this.setState({email: e.target.value})} 
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>Password</Label>
-              <Input 
+              onChange={e => this.setState({ email: e.target.value })}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label>Password</Label>
+            <Input
               type="password"
               name="password"
               placeholder="Password"
               value={this.state.password}
-              onChange={e => this.setState({password: e.target.value})} 
-              />
-            </FormGroup>
-            <Button className="btn-lg btn-dark btn-block" type="submit">Log in</Button>
-          </Form>
+              onChange={e => this.setState({ password: e.target.value })}
+            />
+          </FormGroup>
+          <Button className="btn-lg btn-dark btn-block" type="submit">
+            Log in
+          </Button>
+        </Form>
         <div className="text-center pt-3">Or continue your social accout</div>
         <GoogleLoginButton className="mt-3 mb-3" />
         <FacebookLoginButton className="mt-3 mb-3" />
