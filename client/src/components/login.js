@@ -14,20 +14,29 @@ class Login extends Component {
     this.state = {
       email: '',
       password: '',
-      a: []
+      a: ''
     };
   }
   callAPI = async () => {
-    const res = await axios.get("http://15.164.32.128:9000/login");
-
-    this.setState({a : res.data});
+    console.log(1);
+    await axios.get("http://localhost:9000/main").then((res) => {
+    this.setState((state) => {
+      return {a : res.data.data}; 
+    });
+      console.log(this.state.a);
+    }).catch(err => {
+      console.log(err);
+    })
   }
   componentDidMount(){
     this.callAPI();
+    console.log(2);
+    console.log(this.state);
     console.log(this.state.a);
   }
 
   render() {
+    const {email, password, a} = this.state
     return (
       <Form className="login-form">
         <h1>
