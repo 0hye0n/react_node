@@ -9,11 +9,9 @@ import thunk from "redux-thunk";
 
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-
-// mdl
+import { BrowserRouter } from "react-router-dom";
 import "react-mdl/extra/material.css";
 import "react-mdl/extra/material.js";
-import { BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 
 const store = createStore(reducers, applyMiddleware(thunk));
