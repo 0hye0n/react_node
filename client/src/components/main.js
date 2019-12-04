@@ -16,7 +16,7 @@ const Main = () => {
       <Route path="/teacher" component={Teacher} />
       <Route path="/kakaomap" component={Kakaomap} />
       <Route path="/login" component={Login} />
-      <Route path="/signup" component={Signup} />
+      <Route path="/signup" component={Register} />
     </Switch>
   );
 };
