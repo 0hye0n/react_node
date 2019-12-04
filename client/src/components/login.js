@@ -18,28 +18,33 @@ class Login extends Component {
     };
   }
   callAPI = async () => {
-    console.log(1);
+    const data = {
+      email: this.state.email,
+      password: this.state.password
+    };
+    const headers = {
+      "Content-Type": "application/json"
+    };
     await axios
-      .get("http://localhost:9000/main")
+      .post("http://localhost:9000/login", {
+        headers: headers,
+        data: data
+      })
       .then(res => {
-        this.setState(state => {
-          return { a: res.data.data };
-        });
+        if (res) var values = res.body;
+        console.log(values);
         console.log(this.state.a);
       })
       .catch(err => {
         console.log(err);
       });
   };
-  componentDidMount() {
-    this.callAPI();
-    console.log(2);
-    console.log(this.state);
-    console.log(this.state.a);
-  }
+  componentDidMount() {}
 
   render() {
     const { email, password, a } = this.state;
+    console.log("email = " + email);
+    console.log("password = " + password);
     return (
       <Form className="login-form">
         <h1>

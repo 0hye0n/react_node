@@ -1,8 +1,35 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 // bootstrap
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 class Signup extends Component {
+  state = {
+    email: "",
+    username: "",
+    password: ""
+  };
+
+  handleChange = e => {
+    let nextState = {};
+    nextState[e.target.name] = e.target.value;
+    this.setState(nextState);
+  };
+
+  handleRegister = () => {
+    let id = this.state.username;
+    let pw = this.state.password;
+
+    this.props.onRegister(id, pw).then(result => {
+      if (result) {
+        this.setState({
+          email: "",
+          username: "",
+          password: ""
+        });
+      }
+    });
+  };
   render() {
     return (
       <Form className="signup-form" onSubmit={this.handleSubmit} noValidate>
@@ -54,5 +81,15 @@ class Signup extends Component {
     );
   }
 }
+
+Signup.propTypes = {
+  onRegister: PropTypes.func
+};
+
+Signup.defaultProps = {
+  onRegister: (id, pw) => {
+    console.log("register function is not defined");
+  }
+};
 
 export default Signup;

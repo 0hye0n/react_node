@@ -9,11 +9,9 @@ import { Link } from "react-router-dom";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { apiResponse: "" };
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   render() {
     return (
